@@ -1,5 +1,5 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: %i[ show edit update destroy ]
+  before_action :set_todo, only: %i[:show, :edit, :update, :destroy, :move ]
 
   # GET /todos or /todos.json
   def index
@@ -56,6 +56,12 @@ class TodosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def move
+    @todo.insert_at(params[:position].to_i)
+    head :ok
+  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

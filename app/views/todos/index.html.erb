@@ -9,10 +9,9 @@
     <% end %>
   </div>
 </div>
-
-<div data-controller="drag">
-  <% @todos.each do |todo| %>
-    <div class="card card-body mb-4">
+<div data-controllers="drag" data-drag-url="/todos/.id/move">
+  <% @todos.order(position: :asc).each do |todo| %>
+    <div data-id="<%= todo.id %>" class="card card-body mb-4">
       <%= todo.description %>
     </div>
   <% end %>
